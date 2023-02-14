@@ -1,0 +1,7 @@
+imagenDeTitulo = string
+nombreUsario = string
+apellidoUsario = string
+fechaCreado newDate
+titulo = string
+contenido = string
+reacciones = number
