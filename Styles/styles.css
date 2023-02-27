@@ -124,7 +124,6 @@ footer .logoContainer:hover {
 }
 
 body header {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -449,7 +448,6 @@ body main .card .card__userDetails .time {
 @media screen and (min-width: 1024px) {
   .main__cards #main__column-3 #main__article {
     width: 100%;
-    position: -webkit-sticky;
     position: sticky;
     top: 75px;
   }
@@ -533,6 +531,58 @@ footer {
   color: #4550bb;
 }
 
+.cardMainPost {
+  background-color: white;
+}
+
+@media only screen and (min-width: 10px) and (max-width: 767px) {
+  #column-H4, #column-P1, #column-P2, #main__column-3P {
+    display: none;
+  }
+}
+@media only screen and (min-width: 10px) and (max-width: 767px) {
+  #logo_Dev {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 10px) and (max-width: 640px) {
+  #spanDev {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 10px) and (max-width: 767px) {
+  #barraSuperior {
+    display: flex;
+    justify-content: end;
+  }
+}
+
+@media only screen and (min-width: 10px) and (max-width: 767px) {
+  #main__column-2P {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 3000px) {
+  #main__column-2P {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    height: 50%;
+  }
+  #main__column-3P {
+    width: 10%;
+  }
+  #barraSuperior {
+    display: flex;
+    justify-content: start;
+  }
+  #cerrar {
+    width: 30%;
+  }
+}
 body {
   background-color: #f8f8f2;
 }
