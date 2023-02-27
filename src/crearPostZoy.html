@@ -33,7 +33,7 @@
               <button class="btn text-dark" type="submit">Preview</button>
             </div>
             <div id="cerrar" class="d-flex justify-content-end">
-              <button id="cerrar" class="btn-close fw-bolder" type="submit"></button>
+              <a href="/index.html" id="cerrar" class="btn-close fw-bolder" type="submit"></a>
             </div>
             <!--<button id="cerrar" class="btn fw-bolder" type="submit">X</button>-->
           </div>
@@ -42,7 +42,7 @@
     <main class="main__cards mt-0 d-flex w-100 vh-100"> 
         
         <!--Columna_1-->
-        <div id="main__column-2P" class="container-fluid d-flex justify-content-center mx-0">
+        <form id="formPost" class="container-fluid d-flex justify-content-center mx-0">
           <div class="cardMainPost w-100 py-3">
             <div class="cabezera w-100">
               <div class="d-flex justify-content-start px-0">
@@ -61,11 +61,10 @@
               </div>
 
               <div class="form-floating w-100 px-0 mb-3">
-                <textarea class="form-control border-0 fs-3 fw-bold pt-5" style="height: 90px;" placeholder="New post title here..." id="floatingTextarea" name="floatingTextarea"></textarea>
+                <textarea id="floatingTextarea" name="floatingTextarea" class="form-control border-0 fs-3 fw-bold pt-5" style="height: 90px;" placeholder="New post title here..."></textarea>
                 <label for="floatingTextarea"><p class="fs-3 fw-bold">New post title here...</p></label>
                 <small class="px-3">Add up to 4 tags . . .</small>
               </div>
-
               <div class="bg-light">
                 <ul class="list-group list-group-horizontal px-3 bg-light py-2">
                   <li class="list-group-item border-0 px-0 bg-light"><object class="me-2" data="../Assets/iconos/be.svg"></object></li>
@@ -77,12 +76,11 @@
                   <li class="list-group-item border-0 bg-light"><object class="me-2" data="../Assets/iconos/icon7.svg"></object></li>
                 </ul>
               </div>
-
               <div class="form-floating w-100 h-100 px-0 mb-3 d-flex flex-column align-content-end">
-                <textarea class="form-control border-0 fs-4 pt-5" style="height: 45vh;" placeholder="New post title here..." id="floatingTextarea" name="floatingTextarea"></textarea>
+                <textarea id="floatingTextarea2" name="floatingTextarea2" class="form-control border-0 fs-4 pt-5" style="height: 45vh;" placeholder="New post title here..."></textarea>
                 <div class="bg-light mt-2">
                   <ul class="list-group list-group-horizontal px-3 bg-light py-2">
-                    <button type="button" class="btn btn-primary fw-bold">Publish</button>
+                    <button id="Publish" name="Publish" type="button" class="btn btn-primary fw-bold">Publish</button>
                     <li class="list-group-item border-0 bg-light">Save draft</li>
                     <li class="list-group-item border-0 px-0 bg-light ps-2"><object class="me-2" data="../Assets/iconos/icon8.svg"></object></li>
                     <li class="list-group-item border-0 bg-light">Revert new changes</li>
@@ -91,7 +89,9 @@
               </div>
             </div>
           </div>
-        </div>
+        </form>
+
+
         <!--Columna_2-->
         <div id="main__column-3P" class="d-flex flex-column justify-content-center align-items-center mx-0">
                 <h4 id="column-H4" >Writing a Great Post Title</h4>
@@ -105,5 +105,6 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script src="crearPostZoy.js" type="module"></script>
   </body>
 </html>

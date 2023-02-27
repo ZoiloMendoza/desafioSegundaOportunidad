@@ -1,5 +1,8 @@
-//https://segundaoportunidad-eab4a-default-rtdb.firebaseio.com/.json
+import { get, getAll, post, put, del } from './src/js/firebase.js';
 
 const BtnCrearPost = document.querySelector('#BtnCrearPost');
+const articles = document.querySelector('#articles');
 
-console.log({BtnCrearPost})
+getAll(articles)
+
+console.log('ok')

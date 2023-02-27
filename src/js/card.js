@@ -34,10 +34,10 @@ const card = (post) => {
     //todo lo de abajo va dentro de divUserdetails
     const pNameUser = document.createElement('p');
           pNameUser.classList.add('fw-bold');
-          pNameUser.textContent = post.name;//aquiiiiiiiiii
+          pNameUser.textContent = 'Zoy'//post.name;//aquiiiiiiiiii
     const pTime = document.createElement('p');
           pTime.classList.add('time');
-          pTime.textContent = post.dateCreated;//aquiiiiiiiiii
+          pTime.textContent = '27 feb  2023'//post.dateCreated;//aquiiiiiiiiii
     divUserdetails.appendChild(pNameUser);
     divUserdetails.appendChild(pTime);
     //todo lo de abajo va dentro de aArticleHtml
@@ -78,21 +78,21 @@ const card = (post) => {
     //todo lo de abajo va dentro de divReactions
     const imgIconolike = document.createElement('img');
           imgIconolike.src = '../Assets/iconos/like.svg';
-    const pReactions = document.createComment('p');
+    const pReactions = document.createElement('p');
           pReactions.textContent = '2 reactions';
     divReactions.appendChild(imgIconolike);
     divReactions.appendChild(pReactions);
     //todo lo de abajo va dentro de divComents
     const imgIconoComents = document.createElement('img');
           imgIconoComents.src = '../Assets/iconos/comment.svg';
-    const pAddComents = document.createComment('p');
+    const pAddComents = document.createElement('p');
           pAddComents.textContent = 'Add comment';
     divComents.appendChild(imgIconoComents);
     divComents.appendChild(pAddComents);
     //todo lo de abajo va dentro de divTools
     const pTimeRead = document.createElement('p');//aquiiiiiiii
           pTimeRead.textContent = '2 min read';
-    const imgIconosSave = document.createComment('img');
+    const imgIconosSave = document.createElement('img');
           imgIconosSave.src = '../Assets/iconos/save.svg';
     divTools.appendChild(pTimeRead);
     divTools.appendChild(imgIconosSave);

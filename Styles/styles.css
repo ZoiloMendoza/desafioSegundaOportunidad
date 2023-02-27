@@ -560,13 +560,13 @@ footer {
 }
 
 @media only screen and (min-width: 10px) and (max-width: 767px) {
-  #main__column-2P {
+  #formPost {
     width: 100%;
   }
 }
 
 @media only screen and (min-width: 770px) and (max-width: 3000px) {
-  #main__column-2P {
+  #formPost {
     display: flex;
     justify-content: center;
     width: 70%;
