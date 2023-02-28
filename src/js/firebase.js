@@ -1,4 +1,4 @@
-import { card } from './card.js'
+import { card, contenido } from './card.js'
 
 const urlFirebase = 'https://segundaoportunidad-eab4a-default-rtdb.firebaseio.com'
 
@@ -14,18 +14,31 @@ const parseInfo = (info) => {
     return newList;
 }
 
-const get = async (form,id) => {
+const get = async (contenedor,id) => {
+    try {
+        let response = await fetch(`${urlFirebase}/${id}.json`)
+        const result = await response.json();
+        contenedor.innerHTML = '';
+        console.log(result )
+        contenedor.appendChild(card(result, '1',contenido(result)))
+    } catch (error) {
+        console.log('get', error);
+    }
+}
+
+const getEdit = async (form,id) => {
     try {
         let response = await fetch(`${urlFirebase}/${id}.json`)
         const result = await response.json();
         Object.entries(result)
         Array.from(form).forEach((elemento) =>{
             Object.entries(result).forEach((ele) =>{
-                if(elemento.name === ele[0]){
-                    elemento.value = ele[1]; 
+            if(elemento.name === ele[0]){
+              elemento.value = ele[1];
                 }
             })
-            })
+           })
+           
     } catch (error) {
         console.log('get', error);
     }
@@ -33,12 +46,21 @@ const get = async (form,id) => {
 
 const getAll = async (contenedor) => {
     try {
+    
+        const tiempoTranscurrido = (createdAt) =>{
+            const ahora = new Date().getTime();
+            const diferenciaMilisegundos = ahora - createdAt;
+            const minutos = Math.floor(diferenciaMilisegundos/60000);
+            return minutos;
+        }
+        
         let response = await fetch(`${urlFirebase}/.json`)
         const result = await response.json();
         const data = parseInfo(result);
         contenedor.innerHTML = '';
         data.forEach((personaje) => {
-           contenedor.appendChild(card(personaje)) 
+           const difTiempo = tiempoTranscurrido(personaje.createdAt)
+           contenedor.appendChild(card(personaje, difTiempo,contenido('')))
         })
     } catch (error) {
         console.log('get', error);
@@ -85,4 +107,4 @@ const del = async (id) => {
         console.log('delete:', error)
     }
 }
-export { get ,getAll, post, put, del }
+export { get, getEdit ,getAll, post, put, del }

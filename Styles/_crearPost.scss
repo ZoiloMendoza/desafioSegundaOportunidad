@@ -4,54 +4,47 @@
 }
 
 @media only screen and (min-width: 10px) and (max-width: 767px){
-      #column-H4, #column-P1, #column-P2, #main__column-3P{
+      .column-H4, .column-P1, .column-P2, .main__column-3P{
         display: none;
       }
-}
-#logo_Dev
-{
-    @media only screen and (min-width: 10px) and (max-width: 767px){
+      .log_Dev{
         display: none;
-    }
+      }
+      .barraSuperior{
+        display: flex;
+        justify-content: end;
+      }
+      .formPost{
+        width: 100%;
+      }
 }
-#spanDev
+
+.spanDev
 {
     @media only screen and (min-width: 10px) and (max-width: 640px){
         display: none;
     }
 }
-#barraSuperior
-{
-    @media only screen and (min-width: 10px) and (max-width: 767px){
-       display: flex;
-       justify-content: end;
-    }
-}
-#formPost
-    {
-        @media only screen and (min-width: 10px) and (max-width: 767px){
-            width: 100%;
-         }
-    }
+
 
 @media only screen and (min-width: 770px) and (max-width: 3000px){
-    #formPost
+    .formPost
     {
         display: flex;
         justify-content: center;
         width: 70%;
         height: 50%;
     }
-    #main__column-3P
+    .main__column-3P
     {
         width: 10%;
     }
-    #barraSuperior
+    .barraSuperior
     {
         display: flex;
         justify-content: start;
     }
-    #cerrar
+    .cerrar
     {
         width: 30%;
     }

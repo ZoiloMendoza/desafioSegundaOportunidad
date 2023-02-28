@@ -1,5 +1,5 @@
 
-const card = (post) => {
+const card = (post, difTiempo, contenido) => {
 
     //todo lo de abajo va dentro de articleCard
     const articleCard = document.createElement('article');//1
@@ -43,6 +43,7 @@ const card = (post) => {
     //todo lo de abajo va dentro de aArticleHtml
     const h3CardTtitle = document.createElement('h3');
           h3CardTtitle.classList.add('card-title', 'ms-4');
+          h3CardTtitle.id =post.id
           h3CardTtitle.textContent = post.floatingTextarea;//aquiiiiiiii
     aArticleHtml.appendChild(h3CardTtitle);
     //todo lo de abajo va dentro de ulFlexWrap
@@ -91,13 +92,28 @@ const card = (post) => {
     divComents.appendChild(pAddComents);
     //todo lo de abajo va dentro de divTools
     const pTimeRead = document.createElement('p');//aquiiiiiiii
-          pTimeRead.textContent = '2 min read';
+          pTimeRead.textContent = `${difTiempo} min read`;
     const imgIconosSave = document.createElement('img');
           imgIconosSave.src = '../Assets/iconos/save.svg';
     divTools.appendChild(pTimeRead);
     divTools.appendChild(imgIconosSave);
 
+    articleCard.appendChild(contenido)
+
     return articleCard;
 }
 
-export { card }
+const contenido = (post) =>{
+      const divCar = document.createElement('div');
+      divCar.classList.add('card', 'border-0');
+      const divCardContenido = document.createElement('div');
+      divCardContenido.classList.add('card-body');
+      const creandoP = document.createElement('p')
+      creandoP.classList.add('card-text')
+      creandoP.textContent = post.floatingTextarea2;
+      divCar.appendChild(divCardContenido)
+      divCardContenido.appendChild(creandoP)
+      return divCar
+}
+
+export { card, contenido }
