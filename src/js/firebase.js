@@ -1,6 +1,8 @@
 import { card, contenido } from './card.js'
 
 const urlFirebase = 'https://segundaoportunidad-eab4a-default-rtdb.firebaseio.com'
+//const urlFirebase = 'https://<dominio>/api/v1' //
+
 
 const parseInfo = (info) => {
     const list = Object.entries(info);
@@ -30,9 +32,13 @@ const tiempoTranscurrido = (createdAt) =>{
     }
 }
 
+const filtrado = (arreglo, palabraClave) => {
+    return arreglo.filter( objeto => objeto.floatingTextarea.includes(palabraClave))
+}
+
 const get = async (contenedor,id) => {
     try {
-        let response = await fetch(`${urlFirebase}/${id}.json`)
+        let response = await fetch(`${urlFirebase}/${id}.json`) //
         const result = await response.json();
         const difTiempo = tiempoTranscurrido(result.createdAt)
         contenedor.appendChild(card(result, difTiempo,contenido(result)))
@@ -59,16 +65,26 @@ const getEdit = async (form,id) => {
     }
 }
 
-const getAll = async (contenedor) => {
+const getAll = async (contenedor, boolean, palabraClave) => {
     try {
-        let response = await fetch(`${urlFirebase}/.json`)
+
+        let response = await fetch(`${urlFirebase}/.json`)// ('urlFirebase/posts')
         const result = await response.json();
         const data = parseInfo(result);
-        //contenedor.innerHTML = '';
-        data.forEach((personaje) => {
-           const difTiempo = tiempoTranscurrido(personaje.createdAt)
-           contenedor.appendChild(card(personaje, difTiempo,contenido('')))
-        })
+        if(boolean){
+            data.forEach((personaje) => {
+                const difTiempo = tiempoTranscurrido(personaje.createdAt)
+                contenedor.insertAdjacentElement("afterbegin", card(personaje, difTiempo,contenido('')));
+             })
+        }else if(!boolean){
+            let fil = filtrado(Array.from(data), palabraClave)
+            console.log(fil)
+            contenedor.innerHTML='';
+            fil.forEach((personaje) => {
+                const difTiempo = tiempoTranscurrido(personaje.createdAt)
+                contenedor.insertAdjacentElement("afterbegin", card(personaje, difTiempo,contenido('')));
+             })
+        }
     } catch (error) {
         console.log('get', error);
     }
