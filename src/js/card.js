@@ -92,7 +92,7 @@ const card = (post, difTiempo, contenido) => {
     divComents.appendChild(pAddComents);
     //todo lo de abajo va dentro de divTools
     const pTimeRead = document.createElement('p');//aquiiiiiiii
-          pTimeRead.textContent = `${difTiempo} min read`;
+          pTimeRead.textContent = difTiempo;
     const imgIconosSave = document.createElement('img');
           imgIconosSave.src = '../Assets/iconos/save.svg';
     divTools.appendChild(pTimeRead);

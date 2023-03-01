@@ -14,13 +14,28 @@ const parseInfo = (info) => {
     return newList;
 }
 
+const tiempoTranscurrido = (createdAt) =>{
+    const ahora = new Date().getTime();
+    const diferenciaMilisegundos = ahora - createdAt;
+    const minutos = Math.floor(diferenciaMilisegundos/60000);
+    const horas = Math.floor(minutos/60)
+    const dias = Math.floor(horas/24)
+    if(minutos < 60){
+        return `${minutos} min read`
+    }else if(horas < 24 && horas > 1){
+        return `${horas} hour read`
+    }
+    else if(horas > 24){
+        return `${dias} day read`
+    }
+}
+
 const get = async (contenedor,id) => {
     try {
         let response = await fetch(`${urlFirebase}/${id}.json`)
         const result = await response.json();
-        contenedor.innerHTML = '';
-        console.log(result )
-        contenedor.appendChild(card(result, '1',contenido(result)))
+        const difTiempo = tiempoTranscurrido(result.createdAt)
+        contenedor.appendChild(card(result, difTiempo,contenido(result)))
     } catch (error) {
         console.log('get', error);
     }
@@ -46,18 +61,10 @@ const getEdit = async (form,id) => {
 
 const getAll = async (contenedor) => {
     try {
-    
-        const tiempoTranscurrido = (createdAt) =>{
-            const ahora = new Date().getTime();
-            const diferenciaMilisegundos = ahora - createdAt;
-            const minutos = Math.floor(diferenciaMilisegundos/60000);
-            return minutos;
-        }
-        
         let response = await fetch(`${urlFirebase}/.json`)
         const result = await response.json();
         const data = parseInfo(result);
-        contenedor.innerHTML = '';
+        //contenedor.innerHTML = '';
         data.forEach((personaje) => {
            const difTiempo = tiempoTranscurrido(personaje.createdAt)
            contenedor.appendChild(card(personaje, difTiempo,contenido('')))
@@ -74,26 +81,25 @@ const post = async (formulario,contenedor) => {
         headers : { 'Content-Type': 'application/json;charset=UTF-8'},
         body: JSON.stringify(formulario),
         });
-        //getAll(contenedor)
     } catch (error) {
         console.log('post:', error)
     }
 }
 
-const put = async (persona,id) => {
+const patch = async (persona,id) => {
     try {
         const response = await fetch(`${urlFirebase}/${id}.json`,{
-        method: 'PUT',
+        method: 'PATCH',
         headers : { 'Content-Type': 'application/json;charset=UTF-8'},
         body: JSON.stringify({
-            firstName: persona.firstName,
-            lastName: persona.lastName,
-            matter: persona.matter,
-            average: persona.average
-        }),
-        });
+            floatingTextarea: persona.floatingTextarea,
+            floatingTextarea2: persona.floatingTextarea2,
+            urlImagenPrincipal: persona.urlImagenPrincipal
+        })
+        })
+
     } catch (error) {
-        console.log('put:', error)
+        console.log('patch:', error)
     }
 }
 
@@ -107,4 +113,4 @@ const del = async (id) => {
         console.log('delete:', error)
     }
 }
-export { get, getEdit ,getAll, post, put, del }
+export { get, getEdit ,getAll, post, patch, del }
