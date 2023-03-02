@@ -21,6 +21,7 @@ publish.addEventListener('click', (event) => {
     form.forEach((elemento) =>{
         objetoPost[elemento.name] = elemento.value;
     });
+    
     if(validacion(objetoPost)){
         post(objetoPost);
         alert('se creó correctamente',window.location.href = `../index.html`)

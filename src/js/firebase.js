@@ -71,6 +71,7 @@ const getAll = async (contenedor, boolean, palabraClave) => {
         let response = await fetch(`${urlFirebase}/.json`)// ('urlFirebase/posts')
         const result = await response.json();
         const data = parseInfo(result);
+        console.log(data)
         if(boolean){
             data.forEach((personaje) => {
                 const difTiempo = tiempoTranscurrido(personaje.createdAt)
