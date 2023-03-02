@@ -1,0 +1,50 @@
+body {
+    background-color: #F5F5F5;
+}
+
+section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registration_card {
+    width: 45vw;
+    background-color: #FFFFFF;
+    margin: 40px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgb(210, 210, 210);
+}
+
+.registration_title {
+    text-align: center;
+    font-weight: 600;
+}
+
+.registration_description {
+    text-align: center;
+    color: #969696;
+}
+
+.registration_hr-label {
+    text-align: center;
+    color: #969696;
+}
+
+span {
+    text-align: center;
+}
+
+.new_user {
+    margin: 10px 0 10px 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+#login_footer {
+    background-color: #E5E5E5;
+}
