@@ -2,6 +2,8 @@ import { card, contenido } from './card.js'
 
 const urlFirebase = 'https://segundaoportunidad-eab4a-default-rtdb.firebaseio.com'
 //const urlFirebase = 'https://<dominio>/api/v1' //
+const urlPostMan = 'http://localhost:3000/api/v1/users'
+const urlPostMan2 = 'http://localhost:3000/api/v1/posts'
 
 
 const parseInfo = (info) => {
@@ -68,11 +70,12 @@ const getEdit = async (form,id) => {
 const getAll = async (contenedor, boolean, palabraClave) => {
     try {
 
-        let response = await fetch(`${urlFirebase}/.json`)// ('urlFirebase/posts')
+        let response = await fetch(urlPostMan)// ('urlFirebase/posts')
         const result = await response.json();
         const data = parseInfo(result);
         console.log(data)
-        if(boolean){
+
+        /*if(boolean){
             data.forEach((personaje) => {
                 const difTiempo = tiempoTranscurrido(personaje.createdAt)
                 contenedor.insertAdjacentElement("afterbegin", card(personaje, difTiempo,contenido('')));
@@ -85,15 +88,15 @@ const getAll = async (contenedor, boolean, palabraClave) => {
                 const difTiempo = tiempoTranscurrido(personaje.createdAt)
                 contenedor.insertAdjacentElement("afterbegin", card(personaje, difTiempo,contenido('')));
              })
-        }
+        }*/
     } catch (error) {
         console.log('get', error);
     }
 }
 
-const post = async (formulario,contenedor) => {
+const post = async (formulario) => {
     try {
-        const response = await fetch(`${urlFirebase}/.json`,{
+        const response = await fetch(urlPostMan2,{
         method: 'POST',
         headers : { 'Content-Type': 'application/json;charset=UTF-8'},
         body: JSON.stringify(formulario),

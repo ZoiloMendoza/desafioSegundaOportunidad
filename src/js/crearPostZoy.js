@@ -22,8 +22,15 @@ publish.addEventListener('click', (event) => {
         objetoPost[elemento.name] = elemento.value;
     });
     
-    if(validacion(objetoPost)){
-        post(objetoPost);
+const newObjeto = {
+      title:'clase',
+      content:'78787984994',
+      likes: 2,
+      comments: [],
+      author: '640018f9a6203dd421ca4ac0'
+      }
+    if(true){
+        post(newObjeto);
         alert('se creó correctamente',window.location.href = `../index.html`)
     }else{
         return alert(`Oye te falta completar el formulario e.e`)
