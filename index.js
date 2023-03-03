@@ -1,23 +1,31 @@
-import { get, getAll, post, patch, del } from './src/js/firebase.js';
+import { getAllUsers, getUser ,postUser, patchUser, deleteUser, user_post  } from './src/js/dbUsers.js';
+import { getPost, getEdit, getAllPost, post, patchPost, deletePost } from './src/js/dbPosts.js';
 
 const articles = document.querySelector('#articles');
-const button_addon2 = document.querySelector('#button-addon2')
+const busqueda = document.querySelector('#button-addon2')
+const CrearPost = document.querySelector('#BtnCrearPost')
+const perfill = document.querySelector('#imagenPerfill')
+const url = new URLSearchParams(window.location.search);
+const id = url.get('id')
 
-getAll(articles,true,'')
+getAllPost('', articles, false, false, '')
 
 articles.addEventListener('click', (event) => {
     event.preventDefault();
-    if(event.target.id.includes('-N')){
-        window.location.href = `./src/article.html?persona=${event.target.id}`
+    console.log('click')
+    if(event.target.id){
+        console.log(event.target.id)
+        window.location.href = `./src/article.html?id=${id}&post=${event.target.id}`
     }
 })
 
-
-button_addon2.addEventListener('click', (event) => {
+busqueda.addEventListener('click', (event) => {
     event.preventDefault();
     const searchMain = document.querySelector('#searchMain');
-    getAll(articles, false, searchMain.value)
-   
+    getAllPost('', articles, false, true, searchMain.value)
 })
 
+CrearPost.addEventListener('click', (event) => {
+    window.location.href = `./src/crearPost.html?id=${id}`
+})
 

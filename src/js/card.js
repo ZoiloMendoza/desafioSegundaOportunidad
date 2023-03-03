@@ -1,12 +1,23 @@
+import { getAllUsers, getUser ,postUser, patchUser, deleteUser, user_post  } from './dbUsers.js'
 
-const card = (post, difTiempo, contenido) => {
+const fechaCard = (objetoDate) => {
+      const mesArray = ['Ene', 'Feb', 'Mar', 'Abr', 'May','Jun', 'Jul', 'Ago']
 
+      const fecha = new Date(objetoDate)
+      const dia = fecha.getDate();
+      const mes = fecha.getMonth() + 1;
+      const anio = fecha.getFullYear();
+      return `${dia}-${mesArray[mes]}-${anio}`
+}
+
+const card =  (post, contenido, ejemplo) => {
     //todo lo de abajo va dentro de articleCard
     const articleCard = document.createElement('article');//1
           articleCard.classList.add('card', 'm-3');
     const imgCardPrincipal = document.createElement('img');//1-1
           imgCardPrincipal.classList.add('card-img-top');
-          imgCardPrincipal.src = post.urlImagenPrincipal;//aquiiiiiiiiiii
+          imgCardPrincipal.style.display = 'none';//revisarrrrrrrrrrrrrrrrrrr
+          //imgCardPrincipal.src = //post.urlImagenPrincipal;//aquiiiiiiiiiii
     const divCardBody = document.createElement('div');//1-2
           divCardBody.classList.add('card-body');
     articleCard.appendChild(imgCardPrincipal);
@@ -26,7 +37,7 @@ const card = (post, difTiempo, contenido) => {
     divCardBody.appendChild(divCardButtons);//listo
     //todo lo de abajo va dentro de divCardUserDetails
     const imgUser = document.createElement('img');
-          imgUser.src = '../Assets/Imagenes/vincent.webp';
+          imgUser.src = ejemplo.userPhoto;
     const divUserdetails = document.createElement('div');
           divUserdetails.classList.add('d-flex', 'flex-column');
     divCardUserDetails.appendChild(imgUser);
@@ -34,17 +45,17 @@ const card = (post, difTiempo, contenido) => {
     //todo lo de abajo va dentro de divUserdetails
     const pNameUser = document.createElement('p');
           pNameUser.classList.add('fw-bold');
-          pNameUser.textContent = 'Zoy'//post.name;//aquiiiiiiiiii
+          pNameUser.textContent = ejemplo.name//post.name;//aquiiiiiiiiii
     const pTime = document.createElement('p');
           pTime.classList.add('time');
-          pTime.textContent = '27 feb  2023'//post.dateCreated;//aquiiiiiiiiii
+          pTime.textContent = fechaCard(ejemplo.createdAt)                    //post.dateCreated;//aquiiiiiiiiii
     divUserdetails.appendChild(pNameUser);
     divUserdetails.appendChild(pTime);
     //todo lo de abajo va dentro de aArticleHtml
     const h3CardTtitle = document.createElement('h3');
           h3CardTtitle.classList.add('card-title', 'ms-4');
-          h3CardTtitle.id =post.id
-          h3CardTtitle.textContent = post.floatingTextarea;//aquiiiiiiii
+          h3CardTtitle.id = post._id
+          h3CardTtitle.textContent = post.title;//aquiiiiiiii
     aArticleHtml.appendChild(h3CardTtitle);
     //todo lo de abajo va dentro de ulFlexWrap
     const liWeekly = document.createElement('li');
@@ -92,7 +103,7 @@ const card = (post, difTiempo, contenido) => {
     divComents.appendChild(pAddComents);
     //todo lo de abajo va dentro de divTools
     const pTimeRead = document.createElement('p');//aquiiiiiiii
-          pTimeRead.textContent = difTiempo;
+          pTimeRead.textContent = '';
     const imgIconosSave = document.createElement('img');
           imgIconosSave.src = '../Assets/iconos/save.svg';
     divTools.appendChild(pTimeRead);
@@ -110,7 +121,7 @@ const contenido = (post) =>{
       divCardContenido.classList.add('card-body');
       const creandoP = document.createElement('p')
       creandoP.classList.add('card-text')
-      creandoP.textContent = post.floatingTextarea2;
+      creandoP.textContent = post.content;
       divCar.appendChild(divCardContenido)
       divCardContenido.appendChild(creandoP)
       return divCar

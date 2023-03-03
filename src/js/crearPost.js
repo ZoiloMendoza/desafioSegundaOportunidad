@@ -1,37 +1,37 @@
-import { get, getEdit ,getAll, post, patch, del } from './firebase.js';
+import { getPost ,getAllPost, post, patchPost, deletePost } from './dbPosts.js';
 
 const resetform = document.querySelector('form')
 const form = document.querySelectorAll('textarea,input');
 const publish = document.querySelector('#Publish');
-
+const url = new URLSearchParams(window.location.search);
+const id = url.get('id')
 //createdAt: `${now.getMonth() + 1}-${now.getDate()}-${now.getFullYear()}`,
 //        hoursAndMinutes: `${now.getHours()}:${now.getMinutes()}`
 
-const validacion = (objeto) => {
+const validacion = ({title, content, author}) => {
+    let objeto = {title, content, author};
     const validacionForm = Object.values(objeto).every((elemento) => !elemento == '');
     return validacionForm;
 }
 
 publish.addEventListener('click', (event) => {
     event.preventDefault();
-    const now = new Date()
+    //const now = new Date()
+    //let objetoPost = {
+    //    createdAt: now.getTime()
+    //};
     let objetoPost = {
-        createdAt: now.getTime()
-    };
+        likes: 0,
+        comments: [],
+        author: id,
+    }
     form.forEach((elemento) =>{
         objetoPost[elemento.name] = elemento.value;
     });
-    
-const newObjeto = {
-      title:'clase',
-      content:'78787984994',
-      likes: 2,
-      comments: [],
-      author: '640018f9a6203dd421ca4ac0'
-      }
-    if(true){
-        post(newObjeto);
-        alert('se creó correctamente',window.location.href = `../index.html`)
+    console.log(objetoPost)
+    if(validacion(objetoPost)){
+        post(objetoPost);
+        alert('se creó correctamente',window.location.href = `../index.html?id=${id}`)
     }else{
         return alert(`Oye te falta completar el formulario e.e`)
     }
